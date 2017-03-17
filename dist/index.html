@@ -6,8 +6,23 @@
     <script>
       window.onload = function () {
         var rdc = SDK.getRDC();
-        console.log(rdc);
+        // no tracking data?
+        if (!rdc) {
+          return false;
+        }
+        // dump all convert data to console
+        console.log("Tracking data detected...");
+        for (key in rdc.deepProfileRightSideData) {
+          if (rdc.deepProfileRightSideData[key] !== null) {
+            console.log(" -> " + key + " is " + rdc.deepProfileRightSideData[key]);
+          }
+        }
+        // show the convert name if it's available
+        if (rdc.deepProfileRightSideData.convert_name) {
+          document.body.querySelector("h1").innerHTML = "Your name is " + rdc.deepProfileRightSideData.convert_name + "!";
+        }
       };
     </script>
+    <h1></h1>
   </body>
 </html>
