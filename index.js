@@ -10,6 +10,9 @@ const getQueryString = () => {
 const SDK = {
   "getRDC": () => {
     const r = getQueryString().r || null;
+    if (r === null) {
+      return null;
+    }
     const rdcInstance = new rdc(1);
     rdcInstance.fromString(r);
     return rdcInstance;
